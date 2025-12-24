@@ -1,11 +1,116 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
+/* ========================================
+   Tailwind CSS v4 Configuration
+   ======================================== */
 
+/* Source paths for class detection */
+@source "../views/**/*.blade.php";
+@source "../js/**/*.js";
+
+/* Dark mode variant */
+@variant dark (&:where(.dark, .dark *));
+
+/* ========================================
+   CSS Variables (Light/Dark Mode)
+   MUST be defined BEFORE @theme
+   ======================================== */
+:root {
+  --background: #F9FAFB;
+  --foreground: #1F2937;
+  --card: #FFFFFF;
+  --card-foreground: #1F2937;
+  --border: #E5E7EB;
+  --ring: #3B82F6;
+  --primary: #1E3A8A;
+  --primary-foreground: #FFFFFF;
+  --accent: #E47023;
+  --accent-foreground: #FFFFFF;
+  --secondary: #F9FAFB;
+  --secondary-foreground: #1F2937;
+  --muted: #E5E7EB;
+  --muted-foreground: #6B7280;
+  --destructive: #DC2626;
+  --destructive-foreground: #FFFFFF;
+  --success: #16A34A;
+  --info: #3B82F6;
+  --link: #3B82F6;
+}
+
+.dark {
+  --background: #1F2937;
+  --foreground: #F9FAFB;
+  --card: #111827;
+  --card-foreground: #F9FAFB;
+  --border: #374151;
+  --ring: #3B82F6;
+  --primary: #3B82F6;
+  --primary-foreground: #1F2937;
+  --accent: #E47023;
+  --accent-foreground: #FFFFFF;
+  --secondary: #374151;
+  --secondary-foreground: #F9FAFB;
+  --muted: #374151;
+  --muted-foreground: #9CA3AF;
+  --destructive: #DC2626;
+  --destructive-foreground: #FFFFFF;
+  --success: #16A34A;
+  --info: #3B82F6;
+  --link: #3B82F6;
+}
+
+/* ========================================
+   Theme Tokens
+   ======================================== */
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+  /* Border Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 0.75rem;
+
+  /* Custom Colors - mapped to CSS variables */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-info: var(--info);
+  --color-link: var(--link);
+}
+
+/* ========================================
+   Base Styles
+   ======================================== */
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+
+  a {
+    color: var(--link);
+  }
+}
+
+/* ========================================
+   Alpine.js Utilities
+   ======================================== */
+[x-cloak] {
+    display: none !important;
 }
