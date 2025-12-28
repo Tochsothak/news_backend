@@ -1,4 +1,3 @@
-{{-- filepath: /Users/HaruMalik/Desktop/News-Portal-2026/news_backend/resources/views/categories/create.blade.php --}}
 @extends('layouts.app')
 
 @section('title', 'Create Category')
