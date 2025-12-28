@@ -1,18 +1,16 @@
 {{-- filepath: /Users/HaruMalik/Desktop/News-Portal-2026/news_backend/resources/views/partials/sidebar.blade.php --}}
 {{-- Sidebar Navigation - Responsive --}}
-<aside
-    :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'"
+<aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'"
     class="fixed inset-y-0 left-0 z-50 w-64 transform border-r border-border bg-card transition-transform duration-300 ease-in-out lg:relative lg:z-auto lg:translate-x-0"
-    @keydown.escape.window="sidebarOpen = false"
->
+    @keydown.escape.window="sidebarOpen = false">
     <div class="flex h-screen flex-col">
         {{-- Logo Section --}}
         <div class="flex h-16 items-center border-b border-border px-6">
             <a href="{{ url('/') }}" class="flex items-center gap-3">
                 <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-                    <span class="text-sm font-bold text-primary-foreground">NP</span>
+                    <span class="text-sm font-bold text-primary-foreground">PPI</span>
                 </div>
-                <span class="text-lg font-semibold text-foreground">News Portal</span>
+                <span class="text-lg font-semibold text-foreground">Poipet Insider</span>
             </a>
         </div>
 
@@ -20,8 +18,9 @@
         <nav class="flex-1 overflow-y-auto overscroll-contain p-4" x-data="{
             openMenus: {
                 articles: {{ request()->is('articles*') ? 'true' : 'false' }},
+                podcasts: {{ request()->is('podcasts*') ? 'true' : 'false' }},
+                videos: {{ request()->is('videos*') ? 'true' : 'false' }},
                 categories: {{ request()->is('categories*') ? 'true' : 'false' }},
-                tags: {{ request()->is('tags*') ? 'true' : 'false' }},
                 media: {{ request()->is('media*') ? 'true' : 'false' }},
                 pages: {{ request()->is('pages*') ? 'true' : 'false' }},
                 comments: {{ request()->is('comments*') ? 'true' : 'false' }},
@@ -102,11 +101,120 @@
                     </div>
                 </div>
 
+
+                {{-- Podcasts --}}
+                <div class="mt-1">
+                    <button @click="openMenus.podcasts = !openMenus.podcasts"
+                        class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors
+        {{ request()->is('podcasts*') ? 'bg-muted text-foreground' : 'text-foreground hover:bg-muted' }}">
+                        <div class="flex items-center gap-3">
+                            <i class="ph-bold ph-microphone text-lg"></i>
+                            <span>Podcasts</span>
+                        </div>
+                        <i class="ph-bold ph-caret-down text-sm transition-transform duration-200"
+                            :class="openMenus.podcasts ? 'rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="openMenus.podcasts" x-collapse>
+                        <div class="ml-6 mt-1 space-y-1 border-l border-border pl-3">
+                            <a href="{{ url('/podcasts') }}"
+                                class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors
+                {{ request()->is('podcasts') && !request()->is('podcasts/*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
+                                All Podcasts
+                            </a>
+                            <a href="{{ url('/podcasts/create') }}"
+                                class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors
+                {{ request()->is('podcasts/create') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
+                                Create Podcast
+                            </a>
+                            <a href="{{ url('/podcasts/episodes') }}"
+                                class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors
+                {{ request()->is('podcasts/episodes*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
+                                Episodes
+                            </a>
+                            <a href="{{ url('/podcasts/drafts') }}"
+                                class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors
+                {{ request()->is('podcasts/drafts') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
+                                Drafts
+                            </a>
+                            <a href="{{ url('/podcasts/published') }}"
+                                class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors
+                {{ request()->is('podcasts/published') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
+                                Published
+                            </a>
+                            <a href="{{ url('/podcasts/scheduled') }}"
+                                class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors
+                {{ request()->is('podcasts/scheduled') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
+                                Scheduled
+                            </a>
+                            <a href="{{ url('/podcasts/trash') }}"
+                                class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors
+                {{ request()->is('podcasts/trash') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
+                                Trash
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+                {{-- Videos --}}
+                <div class="mt-1">
+                    <button @click="openMenus.videos = !openMenus.videos"
+                        class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors
+        {{ request()->is('videos*') ? 'bg-muted text-foreground' : 'text-foreground hover:bg-muted' }}">
+                        <div class="flex items-center gap-3">
+                            <i class="ph-bold ph-video text-lg"></i>
+                            <span>Videos</span>
+                        </div>
+                        <i class="ph-bold ph-caret-down text-sm transition-transform duration-200"
+                            :class="openMenus.videos ? 'rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="openMenus.videos" x-collapse>
+                        <div class="ml-6 mt-1 space-y-1 border-l border-border pl-3">
+                            <a href="{{ url('/videos') }}"
+                                class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors
+                {{ request()->is('videos') && !request()->is('videos/*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
+                                All Videos
+                            </a>
+                            <a href="{{ url('/videos/create') }}"
+                                class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors
+                {{ request()->is('videos/create') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
+                                Upload Video
+                            </a>
+                            <a href="{{ url('/videos/playlists') }}"
+                                class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors
+                {{ request()->is('videos/playlists*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
+                                Playlists
+                            </a>
+                            <a href="{{ url('/videos/drafts') }}"
+                                class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors
+                {{ request()->is('videos/drafts') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
+                                Drafts
+                            </a>
+                            <a href="{{ url('/videos/published') }}"
+                                class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors
+                {{ request()->is('videos/published') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
+                                Published
+                            </a>
+                            <a href="{{ url('/videos/scheduled') }}"
+                                class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors
+                {{ request()->is('videos/scheduled') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
+                                Scheduled
+                            </a>
+                            <a href="{{ url('/videos/trash') }}"
+                                class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors
+                {{ request()->is('videos/trash') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
+                                Trash
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
                 {{-- Categories --}}
                 <div class="mt-1">
                     <button @click="openMenus.categories = !openMenus.categories"
                         class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors
-                        {{ request()->is('categories*') ? 'bg-muted text-foreground' : 'text-foreground hover:bg-muted' }}">
+                {{ request()->is('categories*') ? 'bg-muted text-foreground' : 'text-foreground hover:bg-muted' }}">
                         <div class="flex items-center gap-3">
                             <i class="ph-bold ph-folders text-lg"></i>
                             <span>Categories</span>
@@ -118,50 +226,29 @@
                         <div class="ml-6 mt-1 space-y-1 border-l border-border pl-3">
                             <a href="{{ url('/categories') }}"
                                 class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors
-                                {{ request()->is('categories') && !request()->is('categories/*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
+                {{ request()->is('categories') && !request()->is('categories/*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
                                 All Categories
                             </a>
                             <a href="{{ url('/categories/create') }}"
                                 class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors
-                                {{ request()->is('categories/create') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
+                {{ request()->is('categories/create') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
                                 Create Category
                             </a>
                             <a href="{{ url('/categories/sub-categories') }}"
                                 class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors
-                                {{ request()->is('categories/sub-categories*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
+                {{ request()->is('categories/sub-categories') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
                                 Sub-Categories
+                            </a>
+                            <a href="{{ url('/categories/reorder') }}"
+                                class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors
+                {{ request()->is('categories/reorder') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
+                                Reorder
                             </a>
                         </div>
                     </div>
                 </div>
 
-                {{-- Tags --}}
-                <div class="mt-1">
-                    <button @click="openMenus.tags = !openMenus.tags"
-                        class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors
-                        {{ request()->is('tags*') ? 'bg-muted text-foreground' : 'text-foreground hover:bg-muted' }}">
-                        <div class="flex items-center gap-3">
-                            <i class="ph-bold ph-tag text-lg"></i>
-                            <span>Tags</span>
-                        </div>
-                        <i class="ph-bold ph-caret-down text-sm transition-transform duration-200"
-                            :class="openMenus.tags ? 'rotate-180' : ''"></i>
-                    </button>
-                    <div x-show="openMenus.tags" x-collapse>
-                        <div class="ml-6 mt-1 space-y-1 border-l border-border pl-3">
-                            <a href="{{ url('/tags') }}"
-                                class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors
-                                {{ request()->is('tags') && !request()->is('tags/*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
-                                All Tags
-                            </a>
-                            <a href="{{ url('/tags/create') }}"
-                                class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors
-                                {{ request()->is('tags/create') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
-                                Create Tag
-                            </a>
-                        </div>
-                    </div>
-                </div>
+
 
                 {{-- Media Library --}}
                 <div class="mt-1">
@@ -597,7 +684,7 @@
                 <div class="mt-1">
                     <button @click="openMenus.settings = !openMenus.settings"
                         class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors
-                        {{ request()->is('settings*') ? 'bg-muted text-foreground' : 'text-foreground hover:bg-muted' }}">
+                {{ request()->is('settings*') ? 'bg-muted text-foreground' : 'text-foreground hover:bg-muted' }}">
                         <div class="flex items-center gap-3">
                             <i class="ph-bold ph-gear text-lg"></i>
                             <span>Settings</span>
@@ -609,43 +696,49 @@
                         <div class="ml-6 mt-1 space-y-1 border-l border-border pl-3">
                             <a href="{{ url('/settings/general') }}"
                                 class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors
-                                {{ request()->is('settings/general') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
+                {{ request()->is('settings/general') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
                                 General
                             </a>
                             <a href="{{ url('/settings/reading') }}"
                                 class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors
-                                {{ request()->is('settings/reading') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
+                {{ request()->is('settings/reading') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
                                 Reading
                             </a>
                             <a href="{{ url('/settings/writing') }}"
                                 class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors
-                                {{ request()->is('settings/writing') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
+                {{ request()->is('settings/writing') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
                                 Writing
                             </a>
                             <a href="{{ url('/settings/seo') }}"
                                 class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors
-                                {{ request()->is('settings/seo') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
+                {{ request()->is('settings/seo') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
                                 SEO
                             </a>
                             <a href="{{ url('/settings/social-media') }}"
                                 class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors
-                                {{ request()->is('settings/social-media') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
+                {{ request()->is('settings/social-media') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
                                 Social Media
                             </a>
                             <a href="{{ url('/settings/email') }}"
                                 class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors
-                                {{ request()->is('settings/email') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
+                {{ request()->is('settings/email') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
                                 Email
                             </a>
                             <a href="{{ url('/settings/cache') }}"
                                 class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors
-                                {{ request()->is('settings/cache') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
+                {{ request()->is('settings/cache') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
                                 Cache
                             </a>
                             <a href="{{ url('/settings/api-keys') }}"
                                 class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors
-                                {{ request()->is('settings/api-keys') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
+                {{ request()->is('settings/api-keys') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
                                 API Keys
+                            </a>
+                            {{-- NEW: System Health --}}
+                            <a href="{{ url('/settings/system-health') }}"
+                                class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors
+                {{ request()->is('settings/system-health') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
+                                System Health
                             </a>
                         </div>
                     </div>
