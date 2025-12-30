@@ -17,17 +17,24 @@ Route::get('/categories', function () {
 })->name('categories.index');
 
 Route::get('/categories/create', function () {
-    return view('categories.create');
+    return view('categories.create-category');
 })->name('categories.create');
 
-Route::get('/categories/sub-categories', function () {
-    return view('categories.sub-categories');
-})->name('categories.sub-categories');
+Route::get('/categories/sub-categories/create', function () {
+    return view('categories.create-sub-category');
+})->name('categories.sub-categories.create');
+
+Route::get('/categories/sub-categories/{id}/edit', function ($id) {
+    return view('categories.edit-sub-category', ['id' => $id]);
+})->name('categories.sub-categories.edit');
 
 Route::get('/categories/reorder', function () {
     return view('categories.reorder');
 })->name('categories.reorder');
 
+// Updated: Changed view from 'categories.edit' to 'categories.edit-category'
 Route::get('/categories/{id}/edit', function ($id) {
-    return view('categories.edit', ['id' => $id]);
+    return view('categories.edit-category', ['id' => $id]);
 })->name('categories.edit');
+
+// Route::post('/categories/reorder', [CategoryController::class, 'reorder']);

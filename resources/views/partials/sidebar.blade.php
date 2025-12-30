@@ -234,10 +234,10 @@
                 {{ request()->is('categories/create') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
                                 Create Category
                             </a>
-                            <a href="{{ url('/categories/sub-categories') }}"
+                            <a href="{{ url('/categories/sub-categories/create') }}"
                                 class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors
-                {{ request()->is('categories/sub-categories') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
-                                Sub-Categories
+                {{ request()->is('categories/sub-categories/create') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">
+                                Create Sub-Category
                             </a>
                             <a href="{{ url('/categories/reorder') }}"
                                 class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors

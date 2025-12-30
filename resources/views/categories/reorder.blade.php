@@ -44,7 +44,7 @@
         {{-- Unsaved Changes Warning --}}
         <div x-show="hasChanges" x-transition
             class="mb-4 flex items-center gap-3 rounded-lg border border-warning/30 bg-warning/5 p-4 sm:mb-6">
-            <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-warning/10">
+            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10">
                 <i class="ph-bold ph-warning text-lg text-warning"></i>
             </div>
             <div class="flex-1">
@@ -56,7 +56,7 @@
         {{-- Instructions --}}
         <div class="mb-4 rounded-lg border border-border bg-card p-4 sm:mb-6">
             <div class="flex items-start gap-3">
-                <div class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-info/10">
+                <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-info/10">
                     <i class="ph-bold ph-info text-sm text-info"></i>
                 </div>
                 <div>
@@ -83,16 +83,23 @@
         <div class="grid gap-4 sm:gap-6 lg:grid-cols-3">
             {{-- Reorder List --}}
             <div class="lg:col-span-2">
-                <div class="rounded-lg border border-border bg-card">
-                    <div class="border-b border-border p-4 sm:p-6">
-                        <h3 class="text-base font-semibold text-foreground sm:text-lg">Categories Order</h3>
-                        <p class="mt-1 text-xs text-muted-foreground">Categories are displayed in this order on the frontend.</p>
+                <div class="rounded-lg border border-border bg-card" x-data="{ allExpanded: true }">
+                    <div class="flex items-center justify-between border-b border-border p-4 sm:p-6">
+                        <div>
+                            <h3 class="text-base font-semibold text-foreground sm:text-lg">Categories Order</h3>
+                            <p class="mt-1 text-xs text-muted-foreground">Categories are displayed in this order on the frontend.</p>
+                        </div>
+                        <button @click="allExpanded = !allExpanded; $dispatch('toggle-all', { expanded: allExpanded })" type="button"
+                            class="inline-flex items-center gap-1.5 rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-muted">
+                            <i class="ph-bold" :class="allExpanded ? 'ph-arrows-in' : 'ph-arrows-out'"></i>
+                            <span x-text="allExpanded ? 'Collapse All' : 'Expand All'"></span>
+                        </button>
                     </div>
 
                     {{-- Sortable Categories List --}}
                     <div class="divide-y divide-border" id="sortable-categories">
                         {{-- Category 1: Technology --}}
-                        <div class="group" @mousedown="markChanged()">
+                        <div class="group" x-data="{ expanded: true }" @toggle-all.window="expanded = $event.detail.expanded" @mousedown="markChanged()">
                             {{-- Parent Category --}}
                             <div class="flex items-center gap-3 p-4 transition-colors hover:bg-muted/50">
                                 <button class="cursor-grab text-muted-foreground hover:text-foreground active:cursor-grabbing"
@@ -108,15 +115,16 @@
                                 </div>
                                 <div class="flex items-center gap-2">
                                     <span class="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">#1</span>
-                                    <button class="rounded-lg p-2 text-muted-foreground opacity-0 transition-all hover:bg-muted hover:text-foreground group-hover:opacity-100"
-                                        title="Expand sub-categories">
-                                        <i class="ph-bold ph-caret-down"></i>
+                                    <button @click="expanded = !expanded" type="button"
+                                        class="rounded-lg p-2 text-muted-foreground transition-all hover:bg-muted hover:text-foreground"
+                                        :title="expanded ? 'Collapse sub-categories' : 'Expand sub-categories'">
+                                        <i class="ph-bold ph-caret-down transition-transform duration-200" :class="expanded ? 'rotate-180' : ''"></i>
                                     </button>
                                 </div>
                             </div>
 
                             {{-- Sub-Categories (Nested Sortable) --}}
-                            <div class="divide-y divide-border border-t border-border bg-muted/20 pl-8">
+                            <div x-show="expanded" x-collapse class="divide-y divide-border border-t border-border bg-muted/20 pl-8">
                                 <div class="flex items-center gap-3 p-3 transition-colors hover:bg-muted/50">
                                     <button class="cursor-grab text-muted-foreground hover:text-foreground active:cursor-grabbing">
                                         <i class="ph-bold ph-dots-six-vertical"></i>
@@ -169,7 +177,7 @@
                         </div>
 
                         {{-- Category 2: Sports --}}
-                        <div class="group" @mousedown="markChanged()">
+                        <div class="group" x-data="{ expanded: true }" @toggle-all.window="expanded = $event.detail.expanded" @mousedown="markChanged()">
                             <div class="flex items-center gap-3 p-4 transition-colors hover:bg-muted/50">
                                 <button class="cursor-grab text-muted-foreground hover:text-foreground active:cursor-grabbing"
                                     title="Drag to reorder">
@@ -184,15 +192,16 @@
                                 </div>
                                 <div class="flex items-center gap-2">
                                     <span class="rounded-full bg-accent/10 px-2 py-0.5 text-xs font-medium text-accent">#2</span>
-                                    <button class="rounded-lg p-2 text-muted-foreground opacity-0 transition-all hover:bg-muted hover:text-foreground group-hover:opacity-100"
-                                        title="Expand sub-categories">
-                                        <i class="ph-bold ph-caret-down"></i>
+                                    <button @click="expanded = !expanded" type="button"
+                                        class="rounded-lg p-2 text-muted-foreground transition-all hover:bg-muted hover:text-foreground"
+                                        :title="expanded ? 'Collapse sub-categories' : 'Expand sub-categories'">
+                                        <i class="ph-bold ph-caret-down transition-transform duration-200" :class="expanded ? 'rotate-180' : ''"></i>
                                     </button>
                                 </div>
                             </div>
 
                             {{-- Sub-Categories --}}
-                            <div class="divide-y divide-border border-t border-border bg-muted/20 pl-8">
+                            <div x-show="expanded" x-collapse class="divide-y divide-border border-t border-border bg-muted/20 pl-8">
                                 <div class="flex items-center gap-3 p-3 transition-colors hover:bg-muted/50">
                                     <button class="cursor-grab text-muted-foreground hover:text-foreground active:cursor-grabbing">
                                         <i class="ph-bold ph-dots-six-vertical"></i>
@@ -233,7 +242,7 @@
                         </div>
 
                         {{-- Category 3: Business --}}
-                        <div class="group" @mousedown="markChanged()">
+                        <div class="group" x-data="{ expanded: true }" @toggle-all.window="expanded = $event.detail.expanded" @mousedown="markChanged()">
                             <div class="flex items-center gap-3 p-4 transition-colors hover:bg-muted/50">
                                 <button class="cursor-grab text-muted-foreground hover:text-foreground active:cursor-grabbing"
                                     title="Drag to reorder">
@@ -248,15 +257,16 @@
                                 </div>
                                 <div class="flex items-center gap-2">
                                     <span class="rounded-full bg-info/10 px-2 py-0.5 text-xs font-medium text-info">#3</span>
-                                    <button class="rounded-lg p-2 text-muted-foreground opacity-0 transition-all hover:bg-muted hover:text-foreground group-hover:opacity-100"
-                                        title="Expand sub-categories">
-                                        <i class="ph-bold ph-caret-down"></i>
+                                    <button @click="expanded = !expanded" type="button"
+                                        class="rounded-lg p-2 text-muted-foreground transition-all hover:bg-muted hover:text-foreground"
+                                        :title="expanded ? 'Collapse sub-categories' : 'Expand sub-categories'">
+                                        <i class="ph-bold ph-caret-down transition-transform duration-200" :class="expanded ? 'rotate-180' : ''"></i>
                                     </button>
                                 </div>
                             </div>
 
                             {{-- Sub-Categories --}}
-                            <div class="divide-y divide-border border-t border-border bg-muted/20 pl-8">
+                            <div x-show="expanded" x-collapse class="divide-y divide-border border-t border-border bg-muted/20 pl-8">
                                 <div class="flex items-center gap-3 p-3 transition-colors hover:bg-muted/50">
                                     <button class="cursor-grab text-muted-foreground hover:text-foreground active:cursor-grabbing">
                                         <i class="ph-bold ph-dots-six-vertical"></i>
@@ -285,7 +295,7 @@
                         </div>
 
                         {{-- Category 4: Entertainment --}}
-                        <div class="group" @mousedown="markChanged()">
+                        <div class="group" x-data="{ expanded: true }" @toggle-all.window="expanded = $event.detail.expanded" @mousedown="markChanged()">
                             <div class="flex items-center gap-3 p-4 transition-colors hover:bg-muted/50">
                                 <button class="cursor-grab text-muted-foreground hover:text-foreground active:cursor-grabbing"
                                     title="Drag to reorder">
@@ -300,15 +310,16 @@
                                 </div>
                                 <div class="flex items-center gap-2">
                                     <span class="rounded-full bg-destructive/10 px-2 py-0.5 text-xs font-medium text-destructive">#4</span>
-                                    <button class="rounded-lg p-2 text-muted-foreground opacity-0 transition-all hover:bg-muted hover:text-foreground group-hover:opacity-100"
-                                        title="Expand sub-categories">
-                                        <i class="ph-bold ph-caret-down"></i>
+                                    <button @click="expanded = !expanded" type="button"
+                                        class="rounded-lg p-2 text-muted-foreground transition-all hover:bg-muted hover:text-foreground"
+                                        :title="expanded ? 'Collapse sub-categories' : 'Expand sub-categories'">
+                                        <i class="ph-bold ph-caret-down transition-transform duration-200" :class="expanded ? 'rotate-180' : ''"></i>
                                     </button>
                                 </div>
                             </div>
 
                             {{-- Sub-Categories --}}
-                            <div class="divide-y divide-border border-t border-border bg-muted/20 pl-8">
+                            <div x-show="expanded" x-collapse class="divide-y divide-border border-t border-border bg-muted/20 pl-8">
                                 <div class="flex items-center gap-3 p-3 transition-colors hover:bg-muted/50">
                                     <button class="cursor-grab text-muted-foreground hover:text-foreground active:cursor-grabbing">
                                         <i class="ph-bold ph-dots-six-vertical"></i>
@@ -349,7 +360,7 @@
                         </div>
 
                         {{-- Category 5: World News --}}
-                        <div class="group" @mousedown="markChanged()">
+                        <div class="group" x-data="{ expanded: true }" @toggle-all.window="expanded = $event.detail.expanded" @mousedown="markChanged()">
                             <div class="flex items-center gap-3 p-4 transition-colors hover:bg-muted/50">
                                 <button class="cursor-grab text-muted-foreground hover:text-foreground active:cursor-grabbing"
                                     title="Drag to reorder">
@@ -364,16 +375,45 @@
                                 </div>
                                 <div class="flex items-center gap-2">
                                     <span class="rounded-full bg-success/10 px-2 py-0.5 text-xs font-medium text-success">#5</span>
-                                    <button class="rounded-lg p-2 text-muted-foreground opacity-0 transition-all hover:bg-muted hover:text-foreground group-hover:opacity-100"
-                                        title="Expand sub-categories">
-                                        <i class="ph-bold ph-caret-down"></i>
+                                    <button @click="expanded = !expanded" type="button"
+                                        class="rounded-lg p-2 text-muted-foreground transition-all hover:bg-muted hover:text-foreground"
+                                        :title="expanded ? 'Collapse sub-categories' : 'Expand sub-categories'">
+                                        <i class="ph-bold ph-caret-down transition-transform duration-200" :class="expanded ? 'rotate-180' : ''"></i>
                                     </button>
+                                </div>
+                            </div>
+
+                            {{-- Sub-Categories --}}
+                            <div x-show="expanded" x-collapse class="divide-y divide-border border-t border-border bg-muted/20 pl-8">
+                                <div class="flex items-center gap-3 p-3 transition-colors hover:bg-muted/50">
+                                    <button class="cursor-grab text-muted-foreground hover:text-foreground active:cursor-grabbing">
+                                        <i class="ph-bold ph-dots-six-vertical"></i>
+                                    </button>
+                                    <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-muted">
+                                        <i class="ph-bold ph-flag text-sm text-muted-foreground"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="text-sm font-medium text-foreground">Politics</p>
+                                    </div>
+                                    <span class="text-xs text-muted-foreground">#5.1</span>
+                                </div>
+                                <div class="flex items-center gap-3 p-3 transition-colors hover:bg-muted/50">
+                                    <button class="cursor-grab text-muted-foreground hover:text-foreground active:cursor-grabbing">
+                                        <i class="ph-bold ph-dots-six-vertical"></i>
+                                    </button>
+                                    <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-muted">
+                                        <i class="ph-bold ph-scales text-sm text-muted-foreground"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="text-sm font-medium text-foreground">Economy</p>
+                                    </div>
+                                    <span class="text-xs text-muted-foreground">#5.2</span>
                                 </div>
                             </div>
                         </div>
 
                         {{-- Category 6: Health (Inactive) --}}
-                        <div class="group opacity-60" @mousedown="markChanged()">
+                        <div class="group opacity-60" x-data="{ expanded: false }" @toggle-all.window="expanded = $event.detail.expanded" @mousedown="markChanged()">
                             <div class="flex items-center gap-3 p-4 transition-colors hover:bg-muted/50">
                                 <button class="cursor-grab text-muted-foreground hover:text-foreground active:cursor-grabbing"
                                     title="Drag to reorder">
@@ -389,6 +429,39 @@
                                 <div class="flex items-center gap-2">
                                     <span class="rounded-full bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground">#6</span>
                                     <span class="rounded-full bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground">Inactive</span>
+                                    <button @click="expanded = !expanded" type="button"
+                                        class="rounded-lg p-2 text-muted-foreground transition-all hover:bg-muted hover:text-foreground"
+                                        :title="expanded ? 'Collapse sub-categories' : 'Expand sub-categories'">
+                                        <i class="ph-bold ph-caret-down transition-transform duration-200" :class="expanded ? 'rotate-180' : ''"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            {{-- Sub-Categories --}}
+                            <div x-show="expanded" x-collapse class="divide-y divide-border border-t border-border bg-muted/20 pl-8">
+                                <div class="flex items-center gap-3 p-3 transition-colors hover:bg-muted/50">
+                                    <button class="cursor-grab text-muted-foreground hover:text-foreground active:cursor-grabbing">
+                                        <i class="ph-bold ph-dots-six-vertical"></i>
+                                    </button>
+                                    <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-muted">
+                                        <i class="ph-bold ph-first-aid text-sm text-muted-foreground"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="text-sm font-medium text-foreground">Medical</p>
+                                    </div>
+                                    <span class="text-xs text-muted-foreground">#6.1</span>
+                                </div>
+                                <div class="flex items-center gap-3 p-3 transition-colors hover:bg-muted/50">
+                                    <button class="cursor-grab text-muted-foreground hover:text-foreground active:cursor-grabbing">
+                                        <i class="ph-bold ph-dots-six-vertical"></i>
+                                    </button>
+                                    <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-muted">
+                                        <i class="ph-bold ph-barbell text-sm text-muted-foreground"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="text-sm font-medium text-foreground">Fitness</p>
+                                    </div>
+                                    <span class="text-xs text-muted-foreground">#6.2</span>
                                 </div>
                             </div>
                         </div>
