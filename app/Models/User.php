@@ -8,11 +8,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -26,6 +27,8 @@ class User extends Authenticatable
         'otp',
         'otp_expires_at',
         'is_verified',
+        'avatar_url',
+        'status',
         'role',
     ];
 
@@ -58,6 +61,44 @@ class User extends Authenticatable
             'password' => 'hashed',
 
         ];
+    }
+
+    // Relationships
+    public function articles()
+    {
+        return $this->hasMany(Article::class, 'author_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function bookmarks()
+    {
+        return $this->hasMany(Bookmark::class);
+    }
+
+    public function reactions()
+    {
+        return $this->hasMany(Reaction::class);
+    }
+
+    public function pushTokens()
+    {
+        return $this->hasMany(PushToken::class);
+    }
+
+    // Scopes
+    public function scopeActive($query)
+    {
+        return $query->where('status', 'active');
+    }
+
+    // Accessors
+    public function getIsActiveAttribute()
+    {
+        return $this->status === 'active';
     }
 
     public function isOtpValid(string $otp): bool

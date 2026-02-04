@@ -8,20 +8,18 @@ use Exception;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\Helpers\ServiceResponse;
-use App\Helpers\LogService;
 use Illuminate\Support\Facades\Mail;
 use App\Helpers\Service;
 use App\Http\Resources\Auth\UserResource;
 use App\Mail\OtpMail;
 use App\Models\User;
-use Illuminate\Container\Attributes\Auth;
-use PhpParser\Node\Expr;
-use Symfony\Component\HttpKernel\DependencyInjection\ServicesResetterInterface;
+use Illuminate\Support\Facades\DB;
 
 class AuthService
 {
     public function register($data)
     {
+        DB::beginTransaction();
         try {
             $user = new User();
             $user->name = $data['name'];
@@ -30,6 +28,7 @@ class AuthService
             $user->phone_number = $data['phone_number'];
             $user->password = $data['password'];
             $user->save();
+            DB::commit();
             $otp = $this->generateAndSendOtp($user, type: 'verify');
             return ServiceResponse::created(
                 data: [
@@ -40,8 +39,9 @@ class AuthService
                     'action' => __('auth.register')
                 ])
             );
-        } catch (\Exception $e) {
-            return ServiceResponse::serverError(message: $e);
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            throw $e; // 🔥 MUST rethrow
         }
     }
 
@@ -63,6 +63,7 @@ class AuthService
                 );
             }
             $token = $user->createToken('auth_token')->plainTextToken;
+
             return ServiceResponse::success(
                 data: ['user' => new LoginResource($user), 'token' => $token],
                 message: __('auth.login_success', [
@@ -70,32 +71,37 @@ class AuthService
                     'action' => __('auth.login'),
                 ])
             );
-        } catch (Exception $e) {
-            return ServiceResponse::serverError($e->getMessage());
+        } catch (\Throwable $e) {
+            // DB::rollBack();
+            throw $e; // 🔥 MUST rethrow
+
         }
     }
     public function generateAndSendOtp(User $user, string $type = 'verify')
     {
+
         try {
             // Generate 6-digit OTP
             $otp = Service::generateOtp(6);
             // Save OTP with 10 minutes expiry
+            // $user->otp = null;
+            // $user->otp_expired_at = null;
+
             $user->otp = Hash::make($otp);
             $user->otp_expired_at = now()->addMinutes(10);
+
             $user->save();
             Mail::to($user->email)->send(new OtpMail($otp, $user, type: $type));
             return  $otp;
-        } catch (\Exception $e) {
-            LogService::error(__('auth.otp_fail'), [
-                'user_id' => $user->id,
-                'error' => $e->getMessage(),
-            ]);
-            return $e->getMessage();
+        } catch (\Throwable $e) {
+            // DB::rollBack();
+            throw $e;
         }
     }
 
     public function verifyOtp(string $email, string $otp): ServiceResponse
     {
+        DB::beginTransaction();
         try {
             $user = User::where('email', $email)->first();
             if (!$user) {
@@ -135,6 +141,7 @@ class AuthService
             // Mark as verified
             $user->markAsVerified();
             $token = $user->createToken('auth_token')->plainTextToken;
+            DB::commit();
             return ServiceResponse::success(
                 message: __('auth.otp_verify_success'),
                 data: [
@@ -143,19 +150,15 @@ class AuthService
                 ],
 
             );
-        } catch (\Exception $e) {
-            LogService::error(__('otp_verification_fail'), [
-                'error' => $e->getMessage()
-            ]);
-
-            return ServiceResponse::serverError(
-                message: __('auth.otp_verification_fail')
-            );
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            throw $e;
         }
     }
 
     public function resendOtp(string $email, string $type): ServiceResponse
     {
+        DB::beginTransaction();
         try {
             $user = User::where('email', $email)->first();
             if (!$user) {
@@ -179,29 +182,28 @@ class AuthService
                 }
             }
             $otp =  $this->generateAndSendOtp($user, type: $type);
+            DB::commit();
+
             return ServiceResponse::success(message: __('auth.otp_sent', ['contact' => $user->email]));
         } catch (\Exception $e) {
-            LogService::error('OTP resend failed', [
-                'user_id' => $user->id,
-                'error' => $e->getMessage()
-            ]);
-
-            return ServiceResponse::serverError(
-                message: __('auth.otp_resend_failed')
-            );
+            DB::rollBack();
+            throw $e;
         }
     }
     public function requestResetOtp(string $email)
     {
+        DB::beginTransaction();
         try {
             $user = User::where('email', $email)->first();
             if (!$user) {
                 return ServiceResponse::notFound(__('auth.not_found', ['data' => __('auth.user')]));
             }
             $this->generateAndSendOtp($user, type: 'reset');
+            DB::commit();
             return ServiceResponse::success(message: __('auth.otp_sent', ['contact' => $email]));
         } catch (Exception $e) {
-            return ServiceResponse::serverError($e->getMessage());
+            DB::rollBack();
+            throw $e;
         }
     }
     public function verifyResetPassword(string $email, string $otp)
@@ -222,6 +224,7 @@ class AuthService
 
     public function resetPassword(string $email, string $password, string $otp)
     {
+        DB::beginTransaction();
         try {
             $user = User::where('email', $email)->first();
             if (!$user) {
@@ -236,10 +239,11 @@ class AuthService
             $user->otp_expired_at = null;
             $user->password_reset_at = now()->toDateTimeString();
             $user->save();
-
+            DB::commit();
             return ServiceResponse::success(message: __('auth.password_reset_success'), data: ['password_reset_at' => $user->password_reset_at]);
         } catch (Exception $e) {
-            return ServiceResponse::serverError($e->getMessage());
+            DB::rollBack();
+            throw $e;
         }
     }
 }
