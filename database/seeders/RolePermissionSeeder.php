@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Arr;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -65,17 +66,19 @@ class RolePermissionSeeder extends Seeder
         ];
 
         foreach ($permissions as $permission) {
-            Permission::create(['name' => $permission]);
+            Permission::updateOrCreate(
+                ['name' => $permission],
+            );
         }
 
         // Create roles and assign permissions
 
         // Super Admin - has all permissions
-        $superAdmin = Role::create(['name' => 'super_admin']);
+        $superAdmin = Role::updateOrCreate(['name' => 'super_admin']);
         $superAdmin->givePermissionTo(Permission::all());
 
         // Admin
-        $admin = Role::create(['name' => 'admin']);
+        $admin = Role::updateOrCreate(['name' => 'admin']);
         $admin->givePermissionTo([
             'view_articles',
             'create_articles',
@@ -107,7 +110,7 @@ class RolePermissionSeeder extends Seeder
         ]);
 
         // Editor
-        $editor = Role::create(['name' => 'editor']);
+        $editor = Role::updateOrCreate(['name' => 'editor']);
         $editor->givePermissionTo([
             'view_articles',
             'create_articles',
@@ -129,7 +132,7 @@ class RolePermissionSeeder extends Seeder
         ]);
 
         // Author
-        $author = Role::create(['name' => 'author']);
+        $author = Role::updateOrCreate(['name' => 'author']);
         $author->givePermissionTo([
             'view_articles',
             'create_articles',
@@ -142,7 +145,7 @@ class RolePermissionSeeder extends Seeder
         ]);
 
         // Subscriber
-        $subscriber = Role::create(['name' => 'subscriber']);
+        $subscriber = Role::updateOrCreate(['name' => 'subscriber']);
         $subscriber->givePermissionTo([
             'view_articles',
         ]);

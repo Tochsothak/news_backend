@@ -20,10 +20,26 @@ class CategorySeeder extends Seeder
             ['name' => 'World', 'description' => 'International news', 'order' => 8],
             ['name' => 'Lifestyle', 'description' => 'Lifestyle and culture', 'order' => 9],
             ['name' => 'Opinion', 'description' => 'Opinion pieces and editorials', 'order' => 10],
+
+            // Additional useful categories
+            ['name' => 'Travel', 'description' => 'Travel news, guides, and tips', 'order' => 11],
+            ['name' => 'Education', 'description' => 'News about schools, universities, and learning', 'order' => 12],
+            ['name' => 'Environment', 'description' => 'Environmental news and climate change', 'order' => 13],
+            ['name' => 'Culture', 'description' => 'Arts, literature, and cultural events', 'order' => 14],
+            ['name' => 'Food', 'description' => 'Food, recipes, and culinary news', 'order' => 15],
+            ['name' => 'Fashion', 'description' => 'Fashion trends and style updates', 'order' => 16],
+            ['name' => 'Automobile', 'description' => 'Automobile news, reviews, and trends', 'order' => 17],
+            ['name' => 'Real Estate', 'description' => 'Housing, property, and real estate news', 'order' => 18],
+            ['name' => 'Gaming', 'description' => 'Video games and esports news', 'order' => 19],
+            ['name' => 'Technology Startups', 'description' => 'Startups, entrepreneurship, and innovation', 'order' => 20],
         ];
 
+
         foreach ($categories as $category) {
-            Category::create($category);
+            Category::updateOrCreate(
+                ["name" => $category["name"],],
+                $category
+            );
         }
     }
 }

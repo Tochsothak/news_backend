@@ -121,18 +121,18 @@ class User extends Authenticatable
         $this->save();
     }
 
-    public function isAdmin(): bool
-    {
-        return $this->role === 'admin';
-    }
+    // public function isAdmin(): bool
+    // {
+    //     return $this->role === 'admin';
+    // }
 
-    public function isModerator(): bool
-    {
-        return $this->role === 'moderator';
-    }
+    // public function isModerator(): bool
+    // {
+    //     return $this->role === 'moderator';
+    // }
 
-    public  function isSuperAdmin(): bool
-    {
-        return  $this->role == 'superAdmin';
-    }
+    // public  function isSuperAdmin(): bool
+    // {
+    //     return  $this->role == 'superAdmin';
+    // }
 }
