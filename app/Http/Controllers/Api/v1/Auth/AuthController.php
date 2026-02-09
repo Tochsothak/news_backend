@@ -8,13 +8,8 @@ use App\Http\Requests\Auth\loginRequest;
 use App\Http\Requests\Auth\OtpRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Services\AuthService;
-use App\Services\OtpService;
 use Exception;
-use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Request as FacadesRequest;
-use Symfony\Component\Mime\Message;
 
 class AuthController extends Controller
 {
