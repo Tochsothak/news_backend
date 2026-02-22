@@ -68,7 +68,7 @@ class IconPicker extends Component
             ['name' => 'keyboard', 'label' => 'Keyboard', 'category' => 'tech'],
             ['name' => 'monitor', 'label' => 'Monitor', 'category' => 'tech'],
             ['name' => 'laptop', 'label' => 'Laptop', 'category' => 'tech'],
-            ['name' => 'tablet', 'label' => 'Tablet', 'category' => 'tech'],
+            ['name' => 'devices', 'label' => 'Devices', 'category' => 'tech'],
 
             // Business
             ['name' => 'chart-line-up', 'label' => 'Chart Line Up', 'category' => 'business'],
@@ -91,7 +91,7 @@ class IconPicker extends Component
             ['name' => 'scales', 'label' => 'Scales', 'category' => 'business'],
 
             // Health
-            ['name' => 'heart-pulse', 'label' => 'Heart Pulse', 'category' => 'health'],
+            ['name' => 'pulse', 'label' => 'Heart Pulse', 'category' => 'health'],
             ['name' => 'first-aid-kit', 'label' => 'First Aid', 'category' => 'health'],
             ['name' => 'pill', 'label' => 'Pill', 'category' => 'health'],
             ['name' => 'brain', 'label' => 'Brain', 'category' => 'health'],
