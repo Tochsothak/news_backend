@@ -8,20 +8,17 @@
 
     <title>@yield('title', 'Dashboard') - News Portal</title>
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700" rel="stylesheet" />
 
-    <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-    <!-- Styles / Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="bg-background text-foreground antialiased">
-    {{-- Main Layout Container --}}
-    <div x-data="{ sidebarOpen: false }" class="flex h-screen overflow-hidden">
+    {{-- Main Layout Container: Added sidebarCollapsed state here --}}
+    <div x-data="{ sidebarOpen: false, sidebarCollapsed: false }" class="flex h-screen overflow-hidden">
 
         {{-- Sidebar Overlay (Mobile) --}}
         <div
@@ -41,7 +38,7 @@
         @include('partials.sidebar')
 
         {{-- Main Content Area --}}
-        <div class="flex flex-1 flex-col overflow-hidden">
+        <div class="flex flex-1 flex-col overflow-hidden transition-all duration-300">
             {{-- Header --}}
             @include('partials.header')
 
