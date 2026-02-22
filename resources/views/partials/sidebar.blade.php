@@ -1,6 +1,7 @@
 {{-- filepath: /Users/HaruMalik/Desktop/News-Portal-2026/news_backend/resources/views/partials/sidebar.blade.php --}}
 {{-- Sidebar Navigation - Responsive & Collapsible --}}
-<aside :class="{
+<aside
+    :class="{
         'translate-x-0': sidebarOpen,
         '-translate-x-full lg:translate-x-0': !sidebarOpen,
         'w-64': !sidebarCollapsed,
@@ -67,7 +68,8 @@
 
             {{-- Articles --}}
             <div class="mt-1">
-                <button @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.articles = true; } else { openMenus.articles = !openMenus.articles }"
+                <button
+                    @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.articles = true; } else { openMenus.articles = !openMenus.articles }"
                     title="Articles"
                     class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors
                     {{ request()->is('articles*') ? 'bg-muted text-foreground' : 'text-foreground hover:bg-muted' }}"
@@ -82,19 +84,28 @@
                 </button>
                 <div x-show="openMenus.articles && !sidebarCollapsed" x-collapse>
                     <div class="ml-6 mt-1 space-y-1 border-l border-border pl-3">
-                        <a href="{{ url('/articles') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('articles') && !request()->is('articles/*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">All Articles</a>
-                        <a href="{{ url('/articles/create') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('articles/create') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Create Article</a>
-                        <a href="{{ url('/articles/drafts') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('articles/drafts') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Drafts</a>
-                        <a href="{{ url('/articles/published') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('articles/published') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Published</a>
-                        <a href="{{ url('/articles/scheduled') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('articles/scheduled') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Scheduled</a>
-                        <a href="{{ url('/articles/trash') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('articles/trash') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Trash</a>
+                        <a href="{{ url('/articles') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('articles') && !request()->is('articles/*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">All
+                            Articles</a>
+                        <a href="{{ url('/articles/create') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('articles/create') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Create
+                            Article</a>
+                        <a href="{{ url('/articles/drafts') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('articles/drafts') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Drafts</a>
+                        <a href="{{ url('/articles/published') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('articles/published') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Published</a>
+                        <a href="{{ url('/articles/scheduled') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('articles/scheduled') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Scheduled</a>
+                        <a href="{{ url('/articles/trash') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('articles/trash') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Trash</a>
                     </div>
                 </div>
             </div>
 
             {{-- Podcasts --}}
             <div class="mt-1">
-                <button @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.podcasts = true; } else { openMenus.podcasts = !openMenus.podcasts }"
+                <button
+                    @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.podcasts = true; } else { openMenus.podcasts = !openMenus.podcasts }"
                     title="Podcasts"
                     class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors
                     {{ request()->is('podcasts*') ? 'bg-muted text-foreground' : 'text-foreground hover:bg-muted' }}"
@@ -109,20 +120,30 @@
                 </button>
                 <div x-show="openMenus.podcasts && !sidebarCollapsed" x-collapse>
                     <div class="ml-6 mt-1 space-y-1 border-l border-border pl-3">
-                        <a href="{{ url('/podcasts') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('podcasts') && !request()->is('podcasts/*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">All Podcasts</a>
-                        <a href="{{ url('/podcasts/create') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('podcasts/create') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Create Podcast</a>
-                        <a href="{{ url('/podcasts/episodes') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('podcasts/episodes*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Episodes</a>
-                        <a href="{{ url('/podcasts/drafts') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('podcasts/drafts') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Drafts</a>
-                        <a href="{{ url('/podcasts/published') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('podcasts/published') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Published</a>
-                        <a href="{{ url('/podcasts/scheduled') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('podcasts/scheduled') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Scheduled</a>
-                        <a href="{{ url('/podcasts/trash') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('podcasts/trash') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Trash</a>
+                        <a href="{{ url('/podcasts') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('podcasts') && !request()->is('podcasts/*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">All
+                            Podcasts</a>
+                        <a href="{{ url('/podcasts/create') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('podcasts/create') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Create
+                            Podcast</a>
+                        <a href="{{ url('/podcasts/episodes') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('podcasts/episodes*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Episodes</a>
+                        <a href="{{ url('/podcasts/drafts') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('podcasts/drafts') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Drafts</a>
+                        <a href="{{ url('/podcasts/published') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('podcasts/published') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Published</a>
+                        <a href="{{ url('/podcasts/scheduled') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('podcasts/scheduled') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Scheduled</a>
+                        <a href="{{ url('/podcasts/trash') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('podcasts/trash') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Trash</a>
                     </div>
                 </div>
             </div>
 
             {{-- Videos --}}
             <div class="mt-1">
-                <button @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.videos = true; } else { openMenus.videos = !openMenus.videos }"
+                <button
+                    @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.videos = true; } else { openMenus.videos = !openMenus.videos }"
                     title="Videos"
                     class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors
                     {{ request()->is('videos*') ? 'bg-muted text-foreground' : 'text-foreground hover:bg-muted' }}"
@@ -137,20 +158,30 @@
                 </button>
                 <div x-show="openMenus.videos && !sidebarCollapsed" x-collapse>
                     <div class="ml-6 mt-1 space-y-1 border-l border-border pl-3">
-                        <a href="{{ url('/videos') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('videos') && !request()->is('videos/*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">All Videos</a>
-                        <a href="{{ url('/videos/create') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('videos/create') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Upload Video</a>
-                        <a href="{{ url('/videos/playlists') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('videos/playlists*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Playlists</a>
-                        <a href="{{ url('/videos/drafts') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('videos/drafts') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Drafts</a>
-                        <a href="{{ url('/videos/published') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('videos/published') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Published</a>
-                        <a href="{{ url('/videos/scheduled') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('videos/scheduled') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Scheduled</a>
-                        <a href="{{ url('/videos/trash') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('videos/trash') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Trash</a>
+                        <a href="{{ url('/videos') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('videos') && !request()->is('videos/*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">All
+                            Videos</a>
+                        <a href="{{ url('/videos/create') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('videos/create') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Upload
+                            Video</a>
+                        <a href="{{ url('/videos/playlists') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('videos/playlists*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Playlists</a>
+                        <a href="{{ url('/videos/drafts') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('videos/drafts') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Drafts</a>
+                        <a href="{{ url('/videos/published') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('videos/published') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Published</a>
+                        <a href="{{ url('/videos/scheduled') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('videos/scheduled') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Scheduled</a>
+                        <a href="{{ url('/videos/trash') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('videos/trash') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Trash</a>
                     </div>
                 </div>
             </div>
 
             {{-- Categories --}}
             <div class="mt-1">
-                <button @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.categories = true; } else { openMenus.categories = !openMenus.categories }"
+                <button
+                    @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.categories = true; } else { openMenus.categories = !openMenus.categories }"
                     title="Categories"
                     class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors
                     {{ request()->is('categories*') ? 'bg-muted text-foreground' : 'text-foreground hover:bg-muted' }}"
@@ -165,17 +196,25 @@
                 </button>
                 <div x-show="openMenus.categories && !sidebarCollapsed" x-collapse>
                     <div class="ml-6 mt-1 space-y-1 border-l border-border pl-3">
-                        <a href="{{ url('/categories') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('categories') && !request()->is('categories/*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">All Categories</a>
-                        <a href="{{ url('/categories/create') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('categories/create') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Create Category</a>
-                        <a href="{{ url('/categories/sub-categories/create') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('categories/sub-categories/create') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Create Sub-Category</a>
-                        <a href="{{ url('/categories/reorder') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('categories/reorder') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Reorder</a>
+                        <a href="{{ url('/categories') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('categories') && !request()->is('categories/*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">All
+                            Categories</a>
+                        <a href="{{ url('/categories/create') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('categories/create') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Create
+                            Category</a>
+                        <a href="{{ url('/categories/sub-categories/create') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('categories/sub-categories/create') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Create
+                            Sub-Category</a>
+                        <a href="{{ url('/categories/reorder') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('categories/reorder') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Reorder</a>
                     </div>
                 </div>
             </div>
 
             {{-- Media Library --}}
             <div class="mt-1">
-                <button @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.media = true; } else { openMenus.media = !openMenus.media }"
+                <button
+                    @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.media = true; } else { openMenus.media = !openMenus.media }"
                     title="Media Library"
                     class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors
                     {{ request()->is('media*') ? 'bg-muted text-foreground' : 'text-foreground hover:bg-muted' }}"
@@ -183,25 +222,34 @@
                     <div class="flex items-center gap-3">
                         <i class="ph-bold ph-image text-lg shrink-0"></i>
                         <span class="whitespace-nowrap transition-all duration-300"
-                            :class="sidebarCollapsed ? 'lg:w-0 lg:opacity-0 lg:overflow-hidden' : 'opacity-100'">Media Library</span>
+                            :class="sidebarCollapsed ? 'lg:w-0 lg:opacity-0 lg:overflow-hidden' : 'opacity-100'">Media
+                            Library</span>
                     </div>
                     <i class="ph-bold ph-caret-down text-sm shrink-0 transition-transform duration-200"
                         :class="{ 'rotate-180': openMenus.media, 'lg:hidden': sidebarCollapsed }"></i>
                 </button>
                 <div x-show="openMenus.media && !sidebarCollapsed" x-collapse>
                     <div class="ml-6 mt-1 space-y-1 border-l border-border pl-3">
-                        <a href="{{ url('/media') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('media') && !request()->is('media/*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">All Media</a>
-                        <a href="{{ url('/media/upload') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('media/upload') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Upload Media</a>
-                        <a href="{{ url('/media/images') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('media/images') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Images</a>
-                        <a href="{{ url('/media/videos') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('media/videos') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Videos</a>
-                        <a href="{{ url('/media/documents') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('media/documents') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Documents</a>
+                        <a href="{{ url('/media') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('media') && !request()->is('media/*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">All
+                            Media</a>
+                        <a href="{{ url('/media/upload') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('media/upload') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Upload
+                            Media</a>
+                        <a href="{{ url('/media/images') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('media/images') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Images</a>
+                        <a href="{{ url('/media/videos') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('media/videos') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Videos</a>
+                        <a href="{{ url('/media/documents') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('media/documents') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Documents</a>
                     </div>
                 </div>
             </div>
 
             {{-- Pages --}}
             <div class="mt-1">
-                <button @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.pages = true; } else { openMenus.pages = !openMenus.pages }"
+                <button
+                    @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.pages = true; } else { openMenus.pages = !openMenus.pages }"
                     title="Pages"
                     class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors
                     {{ request()->is('pages*') ? 'bg-muted text-foreground' : 'text-foreground hover:bg-muted' }}"
@@ -216,9 +264,14 @@
                 </button>
                 <div x-show="openMenus.pages && !sidebarCollapsed" x-collapse>
                     <div class="ml-6 mt-1 space-y-1 border-l border-border pl-3">
-                        <a href="{{ url('/pages') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('pages') && !request()->is('pages/*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">All Pages</a>
-                        <a href="{{ url('/pages/create') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('pages/create') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Create Page</a>
-                        <a href="{{ url('/pages/trash') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('pages/trash') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Trash</a>
+                        <a href="{{ url('/pages') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('pages') && !request()->is('pages/*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">All
+                            Pages</a>
+                        <a href="{{ url('/pages/create') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('pages/create') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Create
+                            Page</a>
+                        <a href="{{ url('/pages/trash') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('pages/trash') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Trash</a>
                     </div>
                 </div>
             </div>
@@ -235,7 +288,8 @@
 
             {{-- Comments --}}
             <div class="mt-1">
-                <button @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.comments = true; } else { openMenus.comments = !openMenus.comments }"
+                <button
+                    @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.comments = true; } else { openMenus.comments = !openMenus.comments }"
                     title="Comments"
                     class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors
                     {{ request()->is('comments*') ? 'bg-muted text-foreground' : 'text-foreground hover:bg-muted' }}"
@@ -250,17 +304,23 @@
                 </button>
                 <div x-show="openMenus.comments && !sidebarCollapsed" x-collapse>
                     <div class="ml-6 mt-1 space-y-1 border-l border-border pl-3">
-                        <a href="{{ url('/comments') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('comments') && !request()->is('comments/*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">All Comments</a>
-                        <a href="{{ url('/comments/pending') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('comments/pending') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Pending</a>
-                        <a href="{{ url('/comments/approved') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('comments/approved') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Approved</a>
-                        <a href="{{ url('/comments/spam') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('comments/spam') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Spam</a>
+                        <a href="{{ url('/comments') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('comments') && !request()->is('comments/*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">All
+                            Comments</a>
+                        <a href="{{ url('/comments/pending') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('comments/pending') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Pending</a>
+                        <a href="{{ url('/comments/approved') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('comments/approved') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Approved</a>
+                        <a href="{{ url('/comments/spam') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('comments/spam') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Spam</a>
                     </div>
                 </div>
             </div>
 
             {{-- Advertisements --}}
             <div class="mt-1">
-                <button @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.ads = true; } else { openMenus.ads = !openMenus.ads }"
+                <button
+                    @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.ads = true; } else { openMenus.ads = !openMenus.ads }"
                     title="Advertisements"
                     class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors
                     {{ request()->is('ads*') ? 'bg-muted text-foreground' : 'text-foreground hover:bg-muted' }}"
@@ -275,17 +335,26 @@
                 </button>
                 <div x-show="openMenus.ads && !sidebarCollapsed" x-collapse>
                     <div class="ml-6 mt-1 space-y-1 border-l border-border pl-3">
-                        <a href="{{ url('/ads') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('ads') && !request()->is('ads/*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">All Ads</a>
-                        <a href="{{ url('/ads/create') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('ads/create') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Create Ad</a>
-                        <a href="{{ url('/ads/zones') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('ads/zones') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Ad Zones</a>
-                        <a href="{{ url('/ads/reports') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('ads/reports') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Ad Reports</a>
+                        <a href="{{ url('/ads') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('ads') && !request()->is('ads/*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">All
+                            Ads</a>
+                        <a href="{{ url('/ads/create') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('ads/create') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Create
+                            Ad</a>
+                        <a href="{{ url('/ads/zones') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('ads/zones') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Ad
+                            Zones</a>
+                        <a href="{{ url('/ads/reports') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('ads/reports') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Ad
+                            Reports</a>
                     </div>
                 </div>
             </div>
 
             {{-- Newsletter --}}
             <div class="mt-1">
-                <button @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.newsletter = true; } else { openMenus.newsletter = !openMenus.newsletter }"
+                <button
+                    @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.newsletter = true; } else { openMenus.newsletter = !openMenus.newsletter }"
                     title="Newsletter"
                     class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors
                     {{ request()->is('newsletter*') ? 'bg-muted text-foreground' : 'text-foreground hover:bg-muted' }}"
@@ -300,10 +369,15 @@
                 </button>
                 <div x-show="openMenus.newsletter && !sidebarCollapsed" x-collapse>
                     <div class="ml-6 mt-1 space-y-1 border-l border-border pl-3">
-                        <a href="{{ url('/newsletter/subscribers') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('newsletter/subscribers') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Subscribers</a>
-                        <a href="{{ url('/newsletter/campaigns') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('newsletter/campaigns') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Campaigns</a>
-                        <a href="{{ url('/newsletter/campaigns/create') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('newsletter/campaigns/create') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Create Campaign</a>
-                        <a href="{{ url('/newsletter/templates') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('newsletter/templates') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Templates</a>
+                        <a href="{{ url('/newsletter/subscribers') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('newsletter/subscribers') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Subscribers</a>
+                        <a href="{{ url('/newsletter/campaigns') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('newsletter/campaigns') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Campaigns</a>
+                        <a href="{{ url('/newsletter/campaigns/create') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('newsletter/campaigns/create') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Create
+                            Campaign</a>
+                        <a href="{{ url('/newsletter/templates') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('newsletter/templates') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Templates</a>
                     </div>
                 </div>
             </div>
@@ -320,7 +394,8 @@
 
             {{-- Users --}}
             <div class="mt-1">
-                <button @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.users = true; } else { openMenus.users = !openMenus.users }"
+                <button
+                    @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.users = true; } else { openMenus.users = !openMenus.users }"
                     title="Users"
                     class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors
                     {{ request()->is('users*') ? 'bg-muted text-foreground' : 'text-foreground hover:bg-muted' }}"
@@ -335,18 +410,26 @@
                 </button>
                 <div x-show="openMenus.users && !sidebarCollapsed" x-collapse>
                     <div class="ml-6 mt-1 space-y-1 border-l border-border pl-3">
-                        <a href="{{ url('/users') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('users') && !request()->is('users/*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">All Users</a>
-                        <a href="{{ url('/users/create') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('users/create') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Create User</a>
-                        <a href="{{ url('/users/authors') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('users/authors') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Authors</a>
-                        <a href="{{ url('/users/editors') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('users/editors') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Editors</a>
-                        <a href="{{ url('/users/subscribers') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('users/subscribers') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Subscribers</a>
+                        <a href="{{ url('/users') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('users') && !request()->is('users/*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">All
+                            Users</a>
+                        <a href="{{ url('/users/create') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('users/create') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Create
+                            User</a>
+                        <a href="{{ url('/users/authors') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('users/authors') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Authors</a>
+                        <a href="{{ url('/users/editors') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('users/editors') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Editors</a>
+                        <a href="{{ url('/users/subscribers') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('users/subscribers') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Subscribers</a>
                     </div>
                 </div>
             </div>
 
             {{-- Roles & Permissions --}}
             <div class="mt-1">
-                <button @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.roles = true; } else { openMenus.roles = !openMenus.roles }"
+                <button
+                    @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.roles = true; } else { openMenus.roles = !openMenus.roles }"
                     title="Roles & Permissions"
                     class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors
                     {{ request()->is('roles*') ? 'bg-muted text-foreground' : 'text-foreground hover:bg-muted' }}"
@@ -354,16 +437,22 @@
                     <div class="flex items-center gap-3">
                         <i class="ph-bold ph-shield-check text-lg shrink-0"></i>
                         <span class="whitespace-nowrap transition-all duration-300"
-                            :class="sidebarCollapsed ? 'lg:w-0 lg:opacity-0 lg:overflow-hidden' : 'opacity-100'">Roles & Permissions</span>
+                            :class="sidebarCollapsed ? 'lg:w-0 lg:opacity-0 lg:overflow-hidden' : 'opacity-100'">Roles
+                            & Permissions</span>
                     </div>
                     <i class="ph-bold ph-caret-down text-sm shrink-0 transition-transform duration-200"
                         :class="{ 'rotate-180': openMenus.roles, 'lg:hidden': sidebarCollapsed }"></i>
                 </button>
                 <div x-show="openMenus.roles && !sidebarCollapsed" x-collapse>
                     <div class="ml-6 mt-1 space-y-1 border-l border-border pl-3">
-                        <a href="{{ url('/roles') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('roles') && !request()->is('roles/*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">All Roles</a>
-                        <a href="{{ url('/roles/create') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('roles/create') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Create Role</a>
-                        <a href="{{ url('/roles/permissions') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('roles/permissions') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Permissions</a>
+                        <a href="{{ url('/roles') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('roles') && !request()->is('roles/*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">All
+                            Roles</a>
+                        <a href="{{ url('/roles/create') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('roles/create') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Create
+                            Role</a>
+                        <a href="{{ url('/roles/permissions') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('roles/permissions') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Permissions</a>
                     </div>
                 </div>
             </div>
@@ -380,7 +469,8 @@
 
             {{-- Appearance --}}
             <div class="mt-1">
-                <button @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.appearance = true; } else { openMenus.appearance = !openMenus.appearance }"
+                <button
+                    @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.appearance = true; } else { openMenus.appearance = !openMenus.appearance }"
                     title="Appearance"
                     class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors
                     {{ request()->is('appearance*') ? 'bg-muted text-foreground' : 'text-foreground hover:bg-muted' }}"
@@ -395,10 +485,14 @@
                 </button>
                 <div x-show="openMenus.appearance && !sidebarCollapsed" x-collapse>
                     <div class="ml-6 mt-1 space-y-1 border-l border-border pl-3">
-                        <a href="{{ url('/appearance/themes') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('appearance/themes') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Themes</a>
-                        <a href="{{ url('/appearance/menus') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('appearance/menus') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Menus</a>
-                        <a href="{{ url('/appearance/widgets') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('appearance/widgets') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Widgets</a>
-                        <a href="{{ url('/appearance/customize') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('appearance/customize') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Customize</a>
+                        <a href="{{ url('/appearance/themes') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('appearance/themes') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Themes</a>
+                        <a href="{{ url('/appearance/menus') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('appearance/menus') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Menus</a>
+                        <a href="{{ url('/appearance/widgets') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('appearance/widgets') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Widgets</a>
+                        <a href="{{ url('/appearance/customize') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('appearance/customize') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Customize</a>
                     </div>
                 </div>
             </div>
@@ -415,7 +509,8 @@
 
             {{-- Analytics --}}
             <div class="mt-1">
-                <button @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.analytics = true; } else { openMenus.analytics = !openMenus.analytics }"
+                <button
+                    @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.analytics = true; } else { openMenus.analytics = !openMenus.analytics }"
                     title="Analytics"
                     class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors
                     {{ request()->is('analytics*') ? 'bg-muted text-foreground' : 'text-foreground hover:bg-muted' }}"
@@ -430,18 +525,28 @@
                 </button>
                 <div x-show="openMenus.analytics && !sidebarCollapsed" x-collapse>
                     <div class="ml-6 mt-1 space-y-1 border-l border-border pl-3">
-                        <a href="{{ url('/analytics') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('analytics') && !request()->is('analytics/*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Overview</a>
-                        <a href="{{ url('/analytics/page-views') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('analytics/page-views') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Page Views</a>
-                        <a href="{{ url('/analytics/popular-articles') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('analytics/popular-articles') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Popular Articles</a>
-                        <a href="{{ url('/analytics/user-statistics') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('analytics/user-statistics') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">User Statistics</a>
-                        <a href="{{ url('/analytics/traffic-sources') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('analytics/traffic-sources') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Traffic Sources</a>
+                        <a href="{{ url('/analytics') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('analytics') && !request()->is('analytics/*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Overview</a>
+                        <a href="{{ url('/analytics/page-views') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('analytics/page-views') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Page
+                            Views</a>
+                        <a href="{{ url('/analytics/popular-articles') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('analytics/popular-articles') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Popular
+                            Articles</a>
+                        <a href="{{ url('/analytics/user-statistics') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('analytics/user-statistics') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">User
+                            Statistics</a>
+                        <a href="{{ url('/analytics/traffic-sources') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('analytics/traffic-sources') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Traffic
+                            Sources</a>
                     </div>
                 </div>
             </div>
 
             {{-- Reports --}}
             <div class="mt-1">
-                <button @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.reports = true; } else { openMenus.reports = !openMenus.reports }"
+                <button
+                    @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.reports = true; } else { openMenus.reports = !openMenus.reports }"
                     title="Reports"
                     class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors
                     {{ request()->is('reports*') ? 'bg-muted text-foreground' : 'text-foreground hover:bg-muted' }}"
@@ -456,10 +561,18 @@
                 </button>
                 <div x-show="openMenus.reports && !sidebarCollapsed" x-collapse>
                     <div class="ml-6 mt-1 space-y-1 border-l border-border pl-3">
-                        <a href="{{ url('/reports/content') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('reports/content') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Content Reports</a>
-                        <a href="{{ url('/reports/users') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('reports/users') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">User Reports</a>
-                        <a href="{{ url('/reports/revenue') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('reports/revenue') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Revenue Reports</a>
-                        <a href="{{ url('/reports/export') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('reports/export') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Export Data</a>
+                        <a href="{{ url('/reports/content') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('reports/content') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Content
+                            Reports</a>
+                        <a href="{{ url('/reports/users') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('reports/users') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">User
+                            Reports</a>
+                        <a href="{{ url('/reports/revenue') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('reports/revenue') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Revenue
+                            Reports</a>
+                        <a href="{{ url('/reports/export') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('reports/export') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Export
+                            Data</a>
                     </div>
                 </div>
             </div>
@@ -476,7 +589,8 @@
 
             {{-- Settings --}}
             <div class="mt-1">
-                <button @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.settings = true; } else { openMenus.settings = !openMenus.settings }"
+                <button
+                    @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.settings = true; } else { openMenus.settings = !openMenus.settings }"
                     title="Settings"
                     class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors
                     {{ request()->is('settings*') ? 'bg-muted text-foreground' : 'text-foreground hover:bg-muted' }}"
@@ -491,22 +605,35 @@
                 </button>
                 <div x-show="openMenus.settings && !sidebarCollapsed" x-collapse>
                     <div class="ml-6 mt-1 space-y-1 border-l border-border pl-3">
-                        <a href="{{ url('/settings/general') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('settings/general') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">General</a>
-                        <a href="{{ url('/settings/reading') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('settings/reading') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Reading</a>
-                        <a href="{{ url('/settings/writing') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('settings/writing') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Writing</a>
-                        <a href="{{ url('/settings/seo') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('settings/seo') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">SEO</a>
-                        <a href="{{ url('/settings/social-media') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('settings/social-media') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Social Media</a>
-                        <a href="{{ url('/settings/email') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('settings/email') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Email</a>
-                        <a href="{{ url('/settings/cache') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('settings/cache') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Cache</a>
-                        <a href="{{ url('/settings/api-keys') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('settings/api-keys') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">API Keys</a>
-                        <a href="{{ url('/settings/system-health') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('settings/system-health') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">System Health</a>
+                        <a href="{{ url('/settings/general') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('settings/general') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">General</a>
+                        <a href="{{ url('/settings/reading') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('settings/reading') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Reading</a>
+                        <a href="{{ url('/settings/writing') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('settings/writing') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Writing</a>
+                        <a href="{{ url('/settings/seo') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('settings/seo') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">SEO</a>
+                        <a href="{{ url('/settings/social-media') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('settings/social-media') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Social
+                            Media</a>
+                        <a href="{{ url('/settings/email') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('settings/email') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Email</a>
+                        <a href="{{ url('/settings/cache') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('settings/cache') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Cache</a>
+                        <a href="{{ url('/settings/api-keys') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('settings/api-keys') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">API
+                            Keys</a>
+                        <a href="{{ url('/settings/system-health') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('settings/system-health') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">System
+                            Health</a>
                     </div>
                 </div>
             </div>
 
             {{-- Integrations --}}
             <div class="mt-1">
-                <button @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.integrations = true; } else { openMenus.integrations = !openMenus.integrations }"
+                <button
+                    @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.integrations = true; } else { openMenus.integrations = !openMenus.integrations }"
                     title="Integrations"
                     class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors
                     {{ request()->is('integrations*') ? 'bg-muted text-foreground' : 'text-foreground hover:bg-muted' }}"
@@ -521,17 +648,25 @@
                 </button>
                 <div x-show="openMenus.integrations && !sidebarCollapsed" x-collapse>
                     <div class="ml-6 mt-1 space-y-1 border-l border-border pl-3">
-                        <a href="{{ url('/integrations/social-login') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('integrations/social-login') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Social Login</a>
-                        <a href="{{ url('/integrations/payment-gateways') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('integrations/payment-gateways') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Payment Gateways</a>
-                        <a href="{{ url('/integrations/third-party-apis') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('integrations/third-party-apis') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Third-party APIs</a>
-                        <a href="{{ url('/integrations/webhooks') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('integrations/webhooks') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Webhooks</a>
+                        <a href="{{ url('/integrations/social-login') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('integrations/social-login') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Social
+                            Login</a>
+                        <a href="{{ url('/integrations/payment-gateways') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('integrations/payment-gateways') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Payment
+                            Gateways</a>
+                        <a href="{{ url('/integrations/third-party-apis') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('integrations/third-party-apis') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Third-party
+                            APIs</a>
+                        <a href="{{ url('/integrations/webhooks') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('integrations/webhooks') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Webhooks</a>
                     </div>
                 </div>
             </div>
 
             {{-- Activity Logs --}}
             <div class="mt-1">
-                <button @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.logs = true; } else { openMenus.logs = !openMenus.logs }"
+                <button
+                    @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.logs = true; } else { openMenus.logs = !openMenus.logs }"
                     title="Activity Logs"
                     class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors
                     {{ request()->is('logs*') ? 'bg-muted text-foreground' : 'text-foreground hover:bg-muted' }}"
@@ -539,23 +674,31 @@
                     <div class="flex items-center gap-3">
                         <i class="ph-bold ph-clock-counter-clockwise text-lg shrink-0"></i>
                         <span class="whitespace-nowrap transition-all duration-300"
-                            :class="sidebarCollapsed ? 'lg:w-0 lg:opacity-0 lg:overflow-hidden' : 'opacity-100'">Activity Logs</span>
+                            :class="sidebarCollapsed ? 'lg:w-0 lg:opacity-0 lg:overflow-hidden' : 'opacity-100'">Activity
+                            Logs</span>
                     </div>
                     <i class="ph-bold ph-caret-down text-sm shrink-0 transition-transform duration-200"
                         :class="{ 'rotate-180': openMenus.logs, 'lg:hidden': sidebarCollapsed }"></i>
                 </button>
                 <div x-show="openMenus.logs && !sidebarCollapsed" x-collapse>
                     <div class="ml-6 mt-1 space-y-1 border-l border-border pl-3">
-                        <a href="{{ url('/logs') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('logs') && !request()->is('logs/*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">All Logs</a>
-                        <a href="{{ url('/logs/user-activity') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('logs/user-activity') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">User Activity</a>
-                        <a href="{{ url('/logs/system') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('logs/system') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">System Logs</a>
+                        <a href="{{ url('/logs') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('logs') && !request()->is('logs/*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">All
+                            Logs</a>
+                        <a href="{{ url('/logs/user-activity') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('logs/user-activity') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">User
+                            Activity</a>
+                        <a href="{{ url('/logs/system') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('logs/system') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">System
+                            Logs</a>
                     </div>
                 </div>
             </div>
 
             {{-- Backup --}}
             <div class="mt-1">
-                <button @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.backup = true; } else { openMenus.backup = !openMenus.backup }"
+                <button
+                    @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.backup = true; } else { openMenus.backup = !openMenus.backup }"
                     title="Backup"
                     class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors
                     {{ request()->is('backup*') ? 'bg-muted text-foreground' : 'text-foreground hover:bg-muted' }}"
@@ -570,8 +713,11 @@
                 </button>
                 <div x-show="openMenus.backup && !sidebarCollapsed" x-collapse>
                     <div class="ml-6 mt-1 space-y-1 border-l border-border pl-3">
-                        <a href="{{ url('/backup/create') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('backup/create') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Create Backup</a>
-                        <a href="{{ url('/backup/restore') }}" class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('backup/restore') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Restore</a>
+                        <a href="{{ url('/backup/create') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('backup/create') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Create
+                            Backup</a>
+                        <a href="{{ url('/backup/restore') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('backup/restore') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Restore</a>
                     </div>
                 </div>
             </div>
