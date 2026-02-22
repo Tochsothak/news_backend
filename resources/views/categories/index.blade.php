@@ -34,7 +34,7 @@
         <div class="mb-4 grid grid-cols-2 gap-3 sm:mb-6 sm:gap-4 lg:grid-cols-4">
 
             {{-- Total Articles (NEW) --}}
-            <div class="rounded-xl border border-border bg-card p-4 sm:p-6">
+            {{-- <div class="rounded-xl border border-border bg-card p-4 sm:p-6">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-xs font-medium text-muted-foreground sm:text-sm">Total Articles</p>
@@ -44,7 +44,7 @@
                         <i class="ph-bold ph-article text-lg text-info sm:text-xl"></i>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             {{-- Total Categories --}}
             <div class="rounded-xl border border-border bg-card p-4 sm:p-6">
