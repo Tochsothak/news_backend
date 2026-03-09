@@ -1,5 +1,4 @@
 @import "tailwindcss";
-
 /* ========================================
    Tailwind CSS v4 Configuration
    ======================================== */
@@ -88,6 +87,11 @@
   --color-success: var(--success);
   --color-info: var(--info);
   --color-link: var(--link);
+
+  /* Brand new font token to bypass Tailwind caching */
+  --font-primary: 'Instrument Sans', 'Kantumruy Pro', sans-serif;
+  /* Typography - Instrument Sans first, Kantumruy Pro immediately after for Khmer */
+  --font-sans: "Instrument Sans", "Kantumruy Pro", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 /* ========================================
@@ -101,6 +105,7 @@
   body {
     background-color: var(--background);
     color: var(--foreground);
+    font-family: var(--font-sans);
   }
 
   a {
