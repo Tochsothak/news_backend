@@ -6,10 +6,38 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
-// Settings Routes
-Route::get('/settings/system-health', function () {
-    return view('settings.system-health');
-})->name('settings.system-health');
+// ==========================================
+// Articles Routes
+// ==========================================
+
+Route::get('/articles', function () {
+    return view('articles.index');
+})->name('articles.index');
+
+Route::get('/articles/create', function () {
+    return view('articles.create-article');
+})->name('articles.create');
+
+Route::get('/articles/drafts', function () {
+    return view('articles.drafts');
+})->name('articles.drafts');
+
+Route::get('/articles/published', function () {
+    return view('articles.published');
+})->name('articles.published');
+
+Route::get('/articles/scheduled', function () {
+    return view('articles.scheduled');
+})->name('articles.scheduled');
+
+Route::get('/articles/trash', function () {
+    return view('articles.trash');
+})->name('articles.trash');
+
+Route::get('/articles/{id}/edit', function ($id) {
+    return view('articles.edit-article', ['id' => $id]);
+})->name('articles.edit');
+
 
 // Categories Routes
 Route::get('/categories', function () {
@@ -37,4 +65,8 @@ Route::get('/categories/{id}/edit', function ($id) {
     return view('categories.edit-category', ['id' => $id]);
 })->name('categories.edit');
 
-// Route::post('/categories/reorder', [CategoryController::class, 'reorder']);
+
+// Settings Routes
+Route::get('/settings/system-health', function () {
+    return view('settings.system-health');
+})->name('settings.system-health');

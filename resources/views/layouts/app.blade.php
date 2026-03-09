@@ -8,15 +8,24 @@
 
     <title>@yield('title', 'Dashboard') - News Portal</title>
 
+    {{-- Load English Font (Instrument Sans) --}}
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700" rel="stylesheet" />
+
+    {{-- Load Khmer Font (Kantumruy Pro) --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
 
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    {{-- Stack for page-specific styles (like Tiptap) --}}
+    @stack('styles')
 </head>
 
-<body class="bg-background text-foreground antialiased">
+<body class="bg-background text-foreground antialiased font-primary">
     {{-- Main Layout Container: Added sidebarCollapsed state here --}}
     <div x-data="{ sidebarOpen: false, sidebarCollapsed: false }" class="flex h-screen overflow-hidden">
 
@@ -67,6 +76,9 @@
             </main>
         </div>
     </div>
+
+    {{-- Stack for page-specific scripts (like Tiptap) --}}
+    @stack('scripts')
 </body>
 
 </html>
