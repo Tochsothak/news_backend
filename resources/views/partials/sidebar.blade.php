@@ -323,7 +323,7 @@
                     @click="if(sidebarCollapsed) { sidebarCollapsed = false; openMenus.ads = true; } else { openMenus.ads = !openMenus.ads }"
                     title="Advertisements"
                     class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors
-                    {{ request()->is('ads*') ? 'bg-muted text-foreground' : 'text-foreground hover:bg-muted' }}"
+        {{ request()->routeIs('ads.*') ? 'bg-muted text-foreground' : 'text-foreground hover:bg-muted' }}"
                     :class="sidebarCollapsed ? 'lg:justify-center lg:px-0' : ''">
                     <div class="flex items-center gap-3">
                         <i class="ph-bold ph-megaphone text-lg shrink-0"></i>
@@ -335,17 +335,17 @@
                 </button>
                 <div x-show="openMenus.ads && !sidebarCollapsed" x-collapse>
                     <div class="ml-6 mt-1 space-y-1 border-l border-border pl-3">
-                        <a href="{{ url('/ads') }}"
-                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('ads') && !request()->is('ads/*') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">All
+                        <a href="{{ route('ads.index') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->routeIs('ads.index') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">All
                             Ads</a>
-                        <a href="{{ url('/ads/create') }}"
-                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('ads/create') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Create
+                        <a href="{{ route('ads.create') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->routeIs('ads.create') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Create
                             Ad</a>
-                        <a href="{{ url('/ads/zones') }}"
-                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('ads/zones') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Ad
+                        <a href="{{ route('ads.zones') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->routeIs('ads.zones') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Ad
                             Zones</a>
-                        <a href="{{ url('/ads/reports') }}"
-                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->is('ads/reports') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Ad
+                        <a href="{{ route('ads.reports') }}"
+                            class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors {{ request()->routeIs('ads.reports') ? 'text-primary font-medium' : 'text-muted-foreground hover:text-foreground' }}">Ad
                             Reports</a>
                     </div>
                 </div>

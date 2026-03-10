@@ -38,6 +38,29 @@ Route::get('/articles/{id}/edit', function ($id) {
     return view('articles.edit-article', ['id' => $id]);
 })->name('articles.edit');
 
+// ==========================================
+// Advertisements Routes
+// ==========================================
+
+Route::get('/ads', function () {
+    return view('ads.index');
+})->name('ads.index');
+
+Route::get('/ads/create', function () {
+    return view('ads.create-ad');
+})->name('ads.create');
+
+Route::get('/ads/{id}/edit', function ($id) {
+    return view('ads.edit-ad', ['id' => $id]);
+})->name('ads.edit');
+
+Route::get('/ads/zones', function () {
+    return view('ads.zones');
+})->name('ads.zones');
+
+Route::get('/ads/reports', function () {
+    return view('ads.reports');
+})->name('ads.reports');
 
 // Categories Routes
 Route::get('/categories', function () {
